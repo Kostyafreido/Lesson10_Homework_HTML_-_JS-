@@ -1,0 +1,44 @@
+.page {
+  background-color: #2b2b2b;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 48px;
+}
+
+.main {
+  display: flex;
+  gap: 20px;
+}
+
+.main__text {
+  margin: 0;
+}
+
+.genres__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 4px;
+}
+
+.genres__list-item {
+  box-sizing: border-box;
+  width: 86px;
+  height: 32px;
+  background-color: #383838;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.actors__title {
+  color: #8b8b8b;
+}
