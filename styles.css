@@ -42,3 +42,9 @@
 .actors__title {
   color: #8b8b8b;
 }
+
+.actors__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
