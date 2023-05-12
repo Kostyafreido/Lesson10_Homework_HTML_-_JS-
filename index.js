@@ -10,19 +10,16 @@ const movies = [
         name: "Chris Pratt",
         birthyear: 1979,
         country: "USA",
-        age: 44
       },
       {
         name: "Bradley Cooper",
         birthyear: 1975,
         country: "USA",
-        age: 48
       },
       {
         name: "Zoe Saldana",
         birthyear: 1978,
         country: "Mexico",
-        age: 45
       },
     ],
     similar: ["Plane", "Sharper"],
@@ -39,19 +36,16 @@ const movies = [
         name: "Gerard Butler",
         birthyear: 1969,
         country: "Scotland",
-        age: 54
       },
       {
         name: "Mike Colter",
         birthyear: 1976,
         country: "USA",
-        age: 47
       },
       {
         name: "Lilly Krug",
         birthyear: 2001,
         country: "Germany",
-        age: 22
       },
     ],
     similar: ["Guardians of the Galaxy Vol. 3", "Sharper"],
@@ -68,19 +62,16 @@ const movies = [
         name: "Julianne Moore",
         birthyear: 1960,
         country: "United Kingdom",
-        age: 63
       },
       {
         name: "Sebastian Stan",
         birthyear: 1982,
         country: "Romania",
-        age: 41
       },
       {
         name: "Briana Middleton",
         birthyear: null,
         country: "USA",
-        age: null
       },
     ],
     similar: ["Guardians of the Galaxy Vol. 3", "Plane"],
@@ -88,29 +79,46 @@ const movies = [
   },
 ];
 
-const moviesByGenre = [
-  {
-    name: "Thriller",
-    movies: ["The Devil All the Time", "Nightcrawler"]
-  },
-  {
-    name: "Crime",
-    movies: ["Dog day afternoon", "The Untouchables"]
-  },
-  {
-    name: "Adventure",
-    movies: ["Guardians of the Galaxy Vol. 3", "Plane"]
-  },
-  {
-    name: "Comedy",
-    movies: ["Hot Fuzz", "The Naked Gun: From the Files of Police Squad!"]
-  },
-  {
-    name: "Drama",
-    movies: ["Calvary", "Good Will Hunting"]
-  },
-  {
-    name: "Action",
-    movies: ["Die Hard", "The Matrix"]
-  }
-];
+
+const currentYear = new Date().getFullYear();   // определяем текущий год с помощью Date()
+
+const updatedMovies = movies.map((movie) => {   // перебираем каждый объект movie в массиве movies
+  const updatedActors = movie.actors.map((actor) => {   // снова с помощью map перебираем уже каждый объект actor в свойстве actors
+    const age = currentYear - actor.birthyear;    // производим вычитание года рождения каждого актёра из переменной, куда записали текущий год, и кладём получившееся в переменную age
+    return { ...actor, age };   // с помощью ("...") добавляем к объекту actor обновлённое свойство age и возвращаем
+  });
+  return { ...movie, actors: updatedActors }; // теперь также создаём новый объект movie со свойством actors, в котором содержатся обновлённые объекты actor. Всё это сохраняем в обновлённый массив фильмов updatedMovies
+});
+
+console.log(updatedMovies);   // выводим теперь всё в консоль
+
+
+
+
+
+// const moviesByGenre = [
+//   {
+//     name: "Thriller",
+//     movies: ["The Devil All the Time", "Nightcrawler"]
+//   },
+//   {
+//     name: "Crime",
+//     movies: ["Dog day afternoon", "The Untouchables"]
+//   },
+//   {
+//     name: "Adventure",
+//     movies: ["Guardians of the Galaxy Vol. 3", "Plane"]
+//   },
+//   {
+//     name: "Comedy",
+//     movies: ["Hot Fuzz", "The Naked Gun: From the Files of Police Squad!"]
+//   },
+//   {
+//     name: "Drama",
+//     movies: ["Calvary", "Good Will Hunting"]
+//   },
+//   {
+//     name: "Action",
+//     movies: ["Die Hard", "The Matrix"]
+//   }
+// ];
