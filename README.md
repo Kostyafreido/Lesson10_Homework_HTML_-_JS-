@@ -1,1 +1,1 @@
-# Lesson10_Homework_HTML_-_JS-
+Задание с массивом находится в data.js, задание с рейтингом в index.js
