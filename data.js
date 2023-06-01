@@ -78,3 +78,57 @@ const movies = [
     rating: 3.3,
   },
 ];
+
+
+// const currentYear = new Date().getFullYear();   // определяем текущий год с помощью Date()
+
+// const updatedMovies = movies.map((movie) => {   // перебираем каждый объект movie в массиве movies
+//   const updatedActors = movie.actors.map((actor) => {   // снова с помощью map перебираем уже каждый объект actor в свойстве actors
+//     const age = currentYear - actor.birthyear;    // производим вычитание года рождения каждого актёра из переменной, куда записали текущий год, и кладём получившееся в переменную age
+//     return { ...actor, age };   // с помощью ("...") добавляем к объекту actor обновлённое свойство age и возвращаем
+//   });
+//   return { ...movie, actors: updatedActors }; // теперь также создаём новый объект movie со свойством actors, в котором содержатся обновлённые объекты actor. Всё это сохраняем в обновлённый массив фильмов updatedMovies
+// });
+
+// console.log(updatedMovies);   // выводим теперь всё в консоль
+
+const currentYear = new Date().getFullYear();
+
+const updatedMovies = movies.map((movie) => {
+  const updatedActors = movie.actors.map((actor) => {
+    return {
+      ...actor,
+      age: actor.birthyear ? new Date().getFullYear() - actor.birthyear : null,
+    };
+  });
+  return { ...movie, actors: updatedActors };
+})
+
+const moviesByGenre = [
+  {
+    name: "Thriller",
+    movies: ["The Devil All the Time", "Nightcrawler"]
+  },
+  {
+    name: "Crime",
+    movies: ["Dog day afternoon", "The Untouchables"]
+  },
+  {
+    name: "Adventure",
+    movies: ["Guardians of the Galaxy Vol. 3", "Plane"]
+  },
+  {
+    name: "Comedy",
+    movies: ["Hot Fuzz", "The Naked Gun: From the Files of Police Squad!"]
+  },
+  {
+    name: "Drama",
+    movies: ["Calvary", "Good Will Hunting"]
+  },
+  {
+    name: "Action",
+    movies: ["Die Hard", "The Matrix"]
+  }
+];
+
+console.log(updatedMovies);

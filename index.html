@@ -13,9 +13,21 @@
 </head>
 <body class="page">
   <div class="page__container">
-    <div class="page__container-header">
-      <h1 class="title">guardians of the galaxy vol. 3</h1>
-      <p class="rating">Rating: 7.1 / 10</p>
+    <div class="container__header">
+      <h1 class="container__title">guardians of the galaxy vol. 3</h1>
+      <div class="container__rating">
+        <p class="rating__title">rating:</p>
+        <p class="rating__value-start">9</p>
+        <p>/</p>
+        <p class="rating__value-finish">10</p>
+        </p>
+        <div class="rating__modal">
+          <p>Rate this <br> <span>Sharper</span></p>
+            <input class="rating__modal-input" type="number" placeholder="0" value="0" min="1" max="10">
+            <button class="rating__modal-button" type="submit">rate</button>
+          </p>
+        </div>
+      </div>
     </div>
     <div class="main">
       <div class="main__img-wrapper">
@@ -58,6 +70,7 @@
       </div>
     </div>
   </div>
+  <script src="./data.js"></script>
   <script src="./index.js"></script>
 </body>
 </html>

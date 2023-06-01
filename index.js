@@ -1,124 +1,38 @@
-const movies = [
-  {
-    id: 1,
-    title: "Guardians of the Galaxy Vol. 3",
-    genre: ["drama", "comedy", "adventure"],
-    description:
-      "Still reeling from the loss of Gamora, Peter Quill must rally his team to defend the universe and protect one of their own. If the mission is not completely successful, it could possibly lead to the end of the Guardians as we know them.",
-    actors: [
-      {
-        name: "Chris Pratt",
-        birthyear: 1979,
-        country: "USA",
-      },
-      {
-        name: "Bradley Cooper",
-        birthyear: 1975,
-        country: "USA",
-      },
-      {
-        name: "Zoe Saldana",
-        birthyear: 1978,
-        country: "Mexico",
-      },
-    ],
-    similar: ["Plane", "Sharper"],
-    rating: 8.4,
-  },
-  {
-    id: 2,
-    title: "Plane",
-    genre: ["thriller", "crime", "adventure"],
-    description:
-      "Pilot Brodie Torrance saves passengers from a lightning strike by making a risky landing on a war-torn island -- only to find that surviving the landing was just the beginning. When dangerous rebels take most of the passengers hostage, the only person Torrance can count on for help is Louis Gaspare, an accused murderer who was being transported by the FBI.",
-    actors: [
-      {
-        name: "Gerard Butler",
-        birthyear: 1969,
-        country: "Scotland",
-      },
-      {
-        name: "Mike Colter",
-        birthyear: 1976,
-        country: "USA",
-      },
-      {
-        name: "Lilly Krug",
-        birthyear: 2001,
-        country: "Germany",
-      },
-    ],
-    similar: ["Guardians of the Galaxy Vol. 3", "Sharper"],
-    rating: 6.1,
-  },
-  {
-    id: 3,
-    title: "Sharper",
-    genre: ["drama", "thriller", "crime"],
-    description:
-      "Motivations are suspect, and expectations are turned upside down, as a con artist takes on Manhattan billionaires.",
-    actors: [
-      {
-        name: "Julianne Moore",
-        birthyear: 1960,
-        country: "United Kingdom",
-      },
-      {
-        name: "Sebastian Stan",
-        birthyear: 1982,
-        country: "Romania",
-      },
-      {
-        name: "Briana Middleton",
-        birthyear: null,
-        country: "USA",
-      },
-    ],
-    similar: ["Guardians of the Galaxy Vol. 3", "Plane"],
-    rating: 3.3,
-  },
-];
+const modal = document.querySelector(".rating__modal");
+const rating = document.querySelector(".movies__rating");
+const averageRating = document.querySelector(".rating__value-start");
+const rateInput = document.querySelector(".rating__modal-input");
+const ratingButton = document.querySelector(".rating__modal-button");
 
-
-const currentYear = new Date().getFullYear();   // определяем текущий год с помощью Date()
-
-const updatedMovies = movies.map((movie) => {   // перебираем каждый объект movie в массиве movies
-  const updatedActors = movie.actors.map((actor) => {   // снова с помощью map перебираем уже каждый объект actor в свойстве actors
-    const age = currentYear - actor.birthyear;    // производим вычитание года рождения каждого актёра из переменной, куда записали текущий год, и кладём получившееся в переменную age
-    return { ...actor, age };   // с помощью ("...") добавляем к объекту actor обновлённое свойство age и возвращаем
-  });
-  return { ...movie, actors: updatedActors }; // теперь также создаём новый объект movie со свойством actors, в котором содержатся обновлённые объекты actor. Всё это сохраняем в обновлённый массив фильмов updatedMovies
+// проверка на вводимое значение \\
+rateInput.addEventListener("keyup", function () {
+  let v = parseInt(this.value);
+  if (v < 1) {
+    this.value = 1;
+    alert("Значение должно быть от 1 до 10!");
+  }
+  if (v > 10) {
+    this.value = 10;
+    alert("Значение должно быть от 1 до 10!");
+  }
 });
 
-console.log(updatedMovies);   // выводим теперь всё в консоль
+const ratingArr = [Number(averageRating.innerHTML)];
 
+function updateAverageRating() {
+  ratingArr.push(Number(rateInput.value));
+  console.log(ratingArr);
+  averageRating.innerHTML = (ratingArr.reduce((a, b) => (a + b)) / ratingArr.length).toFixed(1); //toFixed(1) округляет полученный полученный средний рейтинг до одного знака после запятой
 
+  if (averageRating.innerHTML >= 0 && averageRating.innerHTML < 5) {
+    averageRating.style.color = "#ca3838";
+  } else if (averageRating.innerHTML >= 5 && averageRating.innerHTML < 8) {
+    averageRating.style.color = "#adbf3a";
+  } else if (averageRating.innerHTML >= 8 && averageRating.innerHTML <= 10) {
+    averageRating.style.color = "#64c342";
+  }
 
+  return averageRating;
+}
 
-
-// const moviesByGenre = [
-//   {
-//     name: "Thriller",
-//     movies: ["The Devil All the Time", "Nightcrawler"]
-//   },
-//   {
-//     name: "Crime",
-//     movies: ["Dog day afternoon", "The Untouchables"]
-//   },
-//   {
-//     name: "Adventure",
-//     movies: ["Guardians of the Galaxy Vol. 3", "Plane"]
-//   },
-//   {
-//     name: "Comedy",
-//     movies: ["Hot Fuzz", "The Naked Gun: From the Files of Police Squad!"]
-//   },
-//   {
-//     name: "Drama",
-//     movies: ["Calvary", "Good Will Hunting"]
-//   },
-//   {
-//     name: "Action",
-//     movies: ["Die Hard", "The Matrix"]
-//   }
-// ];
+ratingButton.addEventListener("click", updateAverageRating);
