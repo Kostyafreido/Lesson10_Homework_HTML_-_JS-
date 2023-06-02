@@ -32,6 +32,8 @@ function updateAverageRating() {
     averageRating.style.color = "#64c342";
   }
 
+  rateInput.value = "";
+  
   return averageRating;
 }
 
